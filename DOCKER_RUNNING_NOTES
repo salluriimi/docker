@@ -1,0 +1,234 @@
+# docker
+Docker
+
+Purpose is to get ridof all platform dependencies 
+
+Instalation :
+1 Ubuntu:
+  sudo apt-get update -- to update OS packages
+  
+  sudo apt-get install docker.io --to install Docker
+  
+2 CentOS/RHEL:
+  sudo yum update -- to update OS packages
+  
+  sudo yum install docker  --to install Docker
+  
+3 Universel method to install Docker
+  sudo yum install wget
+  
+  wget -qO- https://get.docker.com/ | sh -- which will install docker irrespective of OS 
+  
+  which gives an error syaing that 
+  --Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+   you have to start Docker to get started
+   
+   sudo systemctl start docker
+   sudo systemctl status docker
+   
+   when you installed docker it will installed by root
+   
+   if you want to execute docker commands with user, you have to add that user to docker group
+   
+   sudo usermod -aG docker centos   --centos is a user name
+   
+   ** you have to logout that user and then login again to get it applied.
+   
+   
+   Docker commands 
+   
+   Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  engine      Manage the docker engine
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+--attach      Attach local standard input, output, and error streams to a running container
+--build       Build an image from a Dockerfile
+--commit      Create a new image from a container's changes
+--cp          Copy files/folders between a container and the local filesystem
+--create      Create a new container
+--diff        Inspect changes to files or directories on a container's filesystem
+--events      Get real time events from the server
+--exec        Run a command in a running container
+--export      Export a container's filesystem as a tar archive
+--history     Show the history of an image
+--images      List images
+--import      Import the contents from a tarball to create a filesystem image
+--info        Display system-wide information
+--inspect     Return low-level information on Docker objects
+--kill        Kill one or more running containers
+--load        Load an image from a tar archive or STDIN
+--login       Log in to a Docker registry
+--logout      Log out from a Docker registry
+--logs        Fetch the logs of a container
+--pause       Pause all processes within one or more containers
+--port        List port mappings or a specific mapping for the container
+--ps          List containers
+--pull        Pull an image or a repository from a registry
+--push        Push an image or a repository to a registry
+--rename      Rename a container
+--restart     Restart one or more containers
+--rm          Remove one or more containers
+--rmi         Remove one or more images
+--run         Run a command in a new container
+--save        Save one or more images to a tar archive (streamed to STDOUT by default)
+--search      Search the Docker Hub for images
+--start       Start one or more stopped containers
+--stats       Display a live stream of container(s) resource usage statistics
+--stop        Stop one or more running containers
+--tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+--top         Display the running processes of a container
+--unpause     Unpause all processes within one or more containers
+--update      Update configuration of one or more containers
+--version     Show the Docker version information
+--wait        Block until one or more containers stop, then print their exit codes
+
+--docker -v
+--docker --version
+--docker info
+--docker ps
+--docker ps -a
+
+--docker build
+--docker pull
+--docker run
+
+** Docker Hub it is a public registry
+https://hub.docker.com/
+
+You will find all the required Images --Official 
+
+Components 
+**Engine
+**Image --build time component
+**Containers  --Run time componect
+**rgistries and repositories
+
+-->docker search ubuntu  --serch for the Official images [ok]
+-->docker pull ubuntu
+    [vagrant@localhost ~]$ docker pull ubuntu
+    Using default tag: latest
+    latest: Pulling from library/ubuntu
+    35c102085707: Pull complete
+    251f5509d51d: Pull complete
+    8e829fe70a46: Pull complete
+    6001e1789921: Pull complete
+    Digest: sha256:d1d454df0f579c6be4d8161d227462d69e163a8ff9d20a847533989cf0c94d90
+    Status: Downloaded newer image for ubuntu:latest
+    docker.io/library/ubuntu:latest
+
+-->docker images
+-->docker run ubuntu   / docker run ubuntu:14.04
+
+-->docker run -it ubuntu /bin/bash
+	[vagrant@localhost ~]$ docker run -it ubuntu /bin/bash
+	root@0880f392b4e8:/# ls
+	bin  boot  dev  etc  home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+
+you can execute any ubuntu comands inside that container.
+
+-->exit
+
+[vagrant@localhost ~]$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS                     PORTS               NAMES
+0880f392b4e8        ubuntu              "/bin/bash"         4 minutes ago       Exited (0) 9 seconds ago                       distracted_kare
+	
+--docker start containerid
+-->docker start 0880f392b4e8
+-->docker info
+
+
+docker engine
+docker community engine
+docker enterprise engine which is paid
+
+Directories of Docker under host mechine
+
+[root@localhost docker]# pwd
+/var/lib/docker
+[root@localhost docker]# ls -ltr
+total 4
+drwx------. 4 root root   32 Sep 16 18:46 plugins
+drwx------. 3 root root   22 Sep 16 18:46 image
+drwx------. 2 root root   25 Sep 16 18:46 volumes
+drwx------. 2 root root    6 Sep 16 18:46 trust
+drwxr-x---. 3 root root   19 Sep 16 18:46 network
+drwx------. 2 root root    6 Sep 16 18:46 swarm
+drwx------. 2 root root   24 Sep 16 18:46 builder
+drwx--x--x. 4 root root   92 Sep 16 18:46 buildkit
+drwx------. 2 root root    6 Sep 17 07:23 runtimes
+drwx------. 2 root root    6 Sep 17 09:29 tmp
+drwx------. 9 root root 4096 Sep 17 09:30 overlay2
+drwx------. 3 root root   78 Sep 17 09:30 containers
+[root@localhost docker]#
+
+
+-->docker exec -it containerid ls -l /opt/
+
+**container uses base OS resources to server
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
